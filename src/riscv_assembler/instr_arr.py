@@ -369,7 +369,7 @@ I_instr = [
 	"ld", "lbu", "lhu",
 	"lwu", "fence", "fence.i", 
 	"slli", "slti", "sltiu", 
-	"xori", "slri", "srai",
+	"xori", "srli", "srai",
 	"ori", "andi", "addiw",
 	"slliw", "srliw", "sraiw", 
 	"jalr", "ecall", "ebreak", 
