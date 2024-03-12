@@ -56,10 +56,16 @@ class _I(Instruction):
 
 	def compute_instr(self, instr, rs1, imm, rd):
 		instr = super().check_instr_valid(instr, I_instr)
-		opcode, f3 = 0, 1
+		opcode, f3, f7 = 0, 1, 2
+
+		# Immediate value needs f7 merged into bits 11:5
+		imm_val = int(imm)
+		f7_val = int(instr_map[instr][f7], 2) if len(instr_map[instr]) > f7 else 0
+		mod_imm_val = imm_val | (f7_val << 5)
+		mod_imm = str(mod_imm_val)
 
 		return "".join([
-			_I.immediate(imm),
+			_I.immediate(mod_imm),
 			super().reg(rs1),
 			instr_map[instr][f3],
 			super().reg(rd),
